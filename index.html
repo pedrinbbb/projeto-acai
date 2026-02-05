@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projeto acai</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" media="all">
+    <link rel="stylesheet" href="media-query.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,10 +25,10 @@
     <section class="banner-fundo">
         <header class="header-container">
             <div class="logo">
-                <h1><span class="icee">ICEE</span> AÇAÍ</h1>
+                <h1><a href="index.html"><span class="icee">ICEE</span> AÇAÍ</a></h1>
             </div>
-            <div class="carrinho">
-                <span class="material-symbols-outlined" style="font-size: 20px; color: white; ">shopping_bag</span>
+            <div class="carrinho" id="btnCarrinho">
+                <span class="material-symbols-outlined">shopping_bag</span>
             </div>
         </header>
         <div class="main-tittle">
@@ -52,23 +53,121 @@
         <section class="produtos">
             <aside class="acai-produto">
                 <img src="img/acaiproduto.png">
-                <h2>Garrafa de Açaí</h2>
-                <p>Açaí cremoso, geladinho e cheio de sabor</p>
+            <div class="text-produto">
+                    <h2>Garrafa de Açaí</h2>
+                    <p>Açaí cremoso, geladinho e cheio de sabor</p>
+                <div class="btn-comprar">
+                    <div class="btn-comprar-container">        
+                        <div class="preco-carrinho">
+                            <div class="preco">
+                                <h2>Apartir de R$12,00</h2>
+                            </div>
+                            <div class="adicionar-carrinho">
+                                <span class="material-symbols-outlined">shopping_bag</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </aside>
 
             <aside class="acai-produto">
                 <img src="img/acaiproduto.png">
-                <h2>Garrafa de Açaí</h2>
-                <p>Açaí cremoso, geladinho e cheio de sabor</p>
+            <div class="text-produto">
+                    <h2>Açaí com Maracujá</h2>
+                    <p>Açaí cremoso, geladinho e cheio de sabor</p>
+                <div class="btn-comprar">
+                    <div class="btn-comprar-container">        
+                        <div class="preco-carrinho">
+                            <div class="preco">
+                                <h2>Apartir de R$12,00</h2>
+                            </div>
+                            <div class="adicionar-carrinho">
+                                <span class="material-symbols-outlined">shopping_bag</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </aside>
-            
+
             <aside class="acai-produto">
                 <img src="img/acaiproduto.png">
-                <h2>Garrafa de Açaí</h2>
-                <p>Açaí cremoso, geladinho e cheio de sabor</p>
+            <div class="text-produto">
+                    <h2>Açaí com Limão</h2>
+                    <p>Açaí cremoso, geladinho e cheio de sabor</p>
+                <div class="btn-comprar">
+                    <div class="btn-comprar-container">        
+                        <div class="preco-carrinho">
+                            <div class="preco">
+                                <h2>Apartir de R$12,00</h2>
+                            </div>
+                            <div class="adicionar-carrinho">
+                                <span class="material-symbols-outlined">shopping_bag</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </aside>
+
+
         </section>
     </main>
+
+    <div class="carrinho-modal" id="carrinhoModal">
+    <div class="carrinho-conteudo">
+        <h2>🛒 Seu carrinho</h2>
+        <ul id="listaCarrinho"></ul>
+        <div class="resumo">
+        <p>Subtotal: <span id="subtotal">R$ 0,00</span></p>
+        <p>Taxa de entrega: <span id="taxa">R$ 2,00</span></p>
+        <p class="total">Total: <span id="total">R$ 0,00</span></p>
+        </div>
+        <button id="finalizarPedido">Finalizar Pedido</button>
+        <button id="voltarCardapio">Fechar</button>
+    </div>
+    </div>
+
+<!-- Modal tamanho do produto -->
+    <div class="modal" id="modalTamanho">
+    <div class="modal-content">
+        <h2>Escolha o tamanho</h2>
+        <button class="btn-tamanho" data-tamanho="300ml">300ml</button>
+        <button class="btn-tamanho" data-tamanho="500ml">500ml</button>
+        <button class="fechar">Cancelar</button>
+    </div>
+    </div>
+
+<!-- Modal formulário cliente -->
+    <div id="modalFormCliente" class="modal-cliente">
+    <div class="modal-cliente-conteudo">
+        <h2>Informações do Cliente</h2>
+        <form id="formularioCliente">
+        <label>Nome:</label>
+        <input type="text" id="nomeCliente" required>
+
+        <label>Telefone:</label>
+        <input type="text" id="telefoneCliente" required>
+
+        <label>Endereço:</label>
+        <input type="text" id="enderecoCliente" required>
+
+        <label>Ponto de referência:</label>
+        <input type="text" id="referenciaCliente">
+
+        <label>Bairro:</label>
+        <input type="text" id="bairroCliente" required>
+
+        <button type="submit">Enviar Pedido</button>
+        </form>
+        <button id="fecharFormCliente" class="fechar-cliente">Cancelar</button>
+    </div>
+    </div>
+
+    </div>
+
+
 
 
 

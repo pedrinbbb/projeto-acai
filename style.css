@@ -5,7 +5,10 @@
     box-sizing: border-box;
 }
 html,body{
-    background-image: linear-gradient(to bottom, #ffffff, #e4c48db6);
+    background-image: linear-gradient(to bottom, #ffffff, #ffffffb6);
+}
+a{
+    text-decoration: none;
 }
 .banner-fundo{
     /* background-image: linear-gradient(to bottom, #6111a3, #5d1d80b7); */
@@ -18,9 +21,9 @@ html,body{
     align-items: center;
     padding: 14px 20px;
 }
-.logo{
+.logo a{
     font-family: fonte1;
-    font-size: 13px;
+    font-size: 0.8em;
     color: #883c63;
 }
 .icee{
@@ -28,6 +31,30 @@ html,body{
 }
 .acai{
     color: #883c63;
+}
+.omelhordaregiao{
+    color: white;
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+    margin: 25px auto;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f9a826bb;
+    max-width: 230px;
+    border-radius: 14px;
+
+}
+.carrinho span{
+    color: white;
+    font-size: 22px;
+    padding: 4px;
+    cursor: pointer;
+}
+.carrinho span:hover{
+    color: black;
+    background-color: rgba(255, 255, 255, 0.603);
+    border-radius: 6px;
+    transition: 0.5s;
 }
 .main-tittle{
     display: flex;
@@ -56,7 +83,7 @@ html,body{
     color: white;
     font-family: fonte2;
     font-size: 16px;
-    padding: 12px;
+    padding: 12px 0px 8px 0px; 
     background-image: linear-gradient(to right, #883c63,#9c17f5);
     margin: auto;
     max-width: 250px;
@@ -96,63 +123,206 @@ html,body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
 }
 aside{
     text-align: center;
     font-family: fonte2;
 }
 aside img{
-    max-width: 95%;
-    margin: auto;
+    overflow: hidden;
+    max-width: 80%;
+    margin: 35px 0px auto;
+    border-radius: 20px 20px 0px 0px;
+    box-shadow: 3px -1px 10px rgba(0, 0, 0, 0.226);
+    z-index: 1;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* aside{
-    margin-top: 45px;
+.text-produto{
     text-align: left;
-    background-color: rgba(255, 255, 255, 0);
-    background-image: url(img/acaiproduto.png);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: contain;
+    background-color: rgba(255, 255, 255, 0.541);
+    max-width: 80%;
+    margin:  -5px auto;
+    padding: 12px;
+    border-radius: 0px 0px 20px 20px;
+    box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.301);
+}
+.text-produto h2{
+    padding-bottom: 4px;
+}
+.text-produto p{
     font-family: fonte2;
-    text-align: center;
-    border-radius: 12px;
-    height: 500px;
-    align-content: flex-end;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.171);
+    color: gray;
 }
-aside img{
-    max-width: 380px;
-    height: 340px;
-    border-radius: 12px
+.adicionar-carrinho{
+    background-color: #ffaa20;
+    padding: 6px;
+    border-radius: 20%;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
 }
-.acai-produto h2{
-    position: absolute;
-    top: 124%;
-    left: 22%;
-    color: white;
-    padding: 5px 10px;
+.preco-carrinho{
+    margin-top: 36px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 80px;
+}
+.preco{
+    font-size: 12px;
+    font-family: fonte2;
+}
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.modal-content button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #6a1b9a;
+  color: white;
+}
+
+.modal-content .fechar {
+  background: #999;
+}
+.carrinho-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6); /* fundo escurecido */
+  display: none; /* começa escondido */
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.carrinho-conteudo {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  max-height: 80%;
+  overflow-y: auto;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.carrinho-conteudo h2 {
+  margin-bottom: 15px;
+}
+
+#listaCarrinho {
+  list-style: none;
+  padding: 0;
+}
+
+#listaCarrinho li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.resumo {
+  margin-top: 15px;
+}
+
+.resumo .total {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.carrinho-conteudo button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  background: #6a1b9a;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.modal-cliente {
+  position: fixed;
+  inset: 0;
+  display: none; /* começa escondido */
+  background: rgba(0,0,0,0.6); /* fundo escuro */
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-cliente-conteudo {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  max-height: 80%;
+  overflow-y: auto;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.modal-cliente-conteudo h2 {
+  margin-bottom: 15px;
+}
+
+.modal-cliente-conteudo label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.modal-cliente-conteudo input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.modal-cliente-conteudo button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  background: #6a1b9a;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+/* Notificação de carrinho */
+.notificacao-carrinho {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #6a0dad;
+    color: #fff;
+    padding: 12px 25px;
     border-radius: 5px;
-    
-}
-.acai-produto p{
-    text-align: left;
-    padding-top: 4px;
+    font-weight: 500;
     font-size: 16px;
-} */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    z-index: 2000;
+}
+
+/* Mostrar notificação */
+.notificacao-carrinho.mostrar {
+    opacity: 1;
+}
+
+
