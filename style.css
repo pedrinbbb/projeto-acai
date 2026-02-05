@@ -1,0 +1,158 @@
+@charset "UTF-8";
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,body{
+    background-image: linear-gradient(to bottom, #ffffff, #e4c48db6);
+}
+.banner-fundo{
+    /* background-image: linear-gradient(to bottom, #6111a3, #5d1d80b7); */
+    background-image: linear-gradient(to bottom, #f9a826bb, #ffaa20);
+    height: 50vh;
+}
+.header-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+}
+.logo{
+    font-family: fonte1;
+    font-size: 13px;
+    color: #883c63;
+}
+.icee{
+    color: white;
+}
+.acai{
+    color: #883c63;
+}
+.main-tittle{
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: auto;
+}
+.main-tittle h1{
+    text-align: center;
+    color: white;
+    margin-top: 30px;
+    font-family: fonte1;
+    font-size: 44px;
+}
+.main-tittle p{
+    text-align: center;
+    color: white;
+    font-family: fonte2;
+    font-size: 18px;
+    padding: 12px 8px;
+    margin-bottom: 36px;
+}
+.botao{
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-family: fonte2;
+    font-size: 16px;
+    padding: 12px;
+    background-image: linear-gradient(to right, #883c63,#9c17f5);
+    margin: auto;
+    max-width: 250px;
+    border-radius: 20px;
+    gap: 14px;
+}
+.text-main{
+    text-align: center;
+    max-width: 400px;
+    margin: auto;
+}
+.text-main h3{
+    margin-top: 64px;
+    text-align: center;
+    font-family: fonte2;
+    font-size: 16px;
+    color: #9c17f5;
+}
+.text-main h1{  
+    color: black;
+    font-family: fonte1;
+}
+.text-main .acai-main{
+    font-size: 40px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #9C35E3, #E6469E);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.text-main p{
+    font-family: fonte2;
+    color: gray;
+    padding-top: 12px;
+}
+.produtos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+aside{
+    text-align: center;
+    font-family: fonte2;
+}
+aside img{
+    max-width: 95%;
+    margin: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* aside{
+    margin-top: 45px;
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0);
+    background-image: url(img/acaiproduto.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-family: fonte2;
+    text-align: center;
+    border-radius: 12px;
+    height: 500px;
+    align-content: flex-end;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.171);
+}
+aside img{
+    max-width: 380px;
+    height: 340px;
+    border-radius: 12px
+}
+.acai-produto h2{
+    position: absolute;
+    top: 124%;
+    left: 22%;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    
+}
+.acai-produto p{
+    text-align: left;
+    padding-top: 4px;
+    font-size: 16px;
+} */
