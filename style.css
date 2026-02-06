@@ -162,6 +162,7 @@ aside img{
 }
 .modal {
   position: fixed;
+  top: 0;
   inset: 0;
   background: rgba(0,0,0,0.6);
   display: none;
@@ -171,13 +172,19 @@ aside img{
 }
 
 .modal-content {
-  background: #fff;
+  background: #ffffff;
   padding: 20px;
   border-radius: 10px;
   text-align: center;
+  font-family: fonte1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
 }
 
 .modal-content button {
+  font-family: fonte2;
   margin: 10px;
   padding: 10px 20px;
   border: none;
@@ -195,6 +202,7 @@ aside img{
   inset: 0;
   background: rgba(0,0,0,0.6); /* fundo escurecido */
   display: none; /* começa escondido */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 1000;
@@ -204,11 +212,12 @@ aside img{
   background: #fff;
   padding: 20px;
   border-radius: 10px;
-  width: 90%;
-  max-width: 400px;
-  max-height: 80%;
+  width: 80%;
+  height: 400px;
   overflow-y: auto;
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  font-family: fonte2;
+  line-height: 2em;
 }
 
 .carrinho-conteudo h2 {
@@ -222,7 +231,7 @@ aside img{
 
 #listaCarrinho li {
   display: flex;
-  justify-content: space-between;
+  gap: 25px;
   margin-bottom: 10px;
 }
 
@@ -239,10 +248,17 @@ aside img{
   margin-top: 15px;
   padding: 10px 20px;
   border: none;
-  background: #6a1b9a;
+  background: #000000;
   color: #fff;
   border-radius: 6px;
   cursor: pointer;
+}
+div.carrinho-conteudo div{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: left;
 }
 .modal-cliente {
   position: fixed;
@@ -287,32 +303,31 @@ aside img{
   margin-top: 15px;
   padding: 10px 20px;
   border: none;
-  background: #6a1b9a;
+  background: #7517af;
   color: #fff;
   border-radius: 6px;
   cursor: pointer;
 }
-/* Notificação de carrinho */
-.notificacao-carrinho {
+.notificacao {
     position: fixed;
     bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #6a0dad;
+    right: 20px;
+    background-color: #5a189a;
     color: #fff;
-    padding: 12px 25px;
-    border-radius: 5px;
-    font-weight: 500;
-    font-size: 16px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s ease;
-    z-index: 2000;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    display: none;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 9999;
+    font-family: fonte1;
 }
 
-/* Mostrar notificação */
-.notificacao-carrinho.mostrar {
-    opacity: 1;
+.notificacao.mostrar {
+    display: flex;
+    transform: translateY(0);
 }
+
 
 
