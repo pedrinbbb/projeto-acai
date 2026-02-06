@@ -286,6 +286,14 @@ formularioCliente.addEventListener("submit", e => {
 });
  */
 
+
+
+
+
+
+
+
+
 // ======================
 // Variáveis globais
 // ======================
