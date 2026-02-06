@@ -180,6 +180,8 @@ aside img{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  gap: 25px;
   position: fixed;
 }
 
@@ -327,6 +329,13 @@ div.carrinho-conteudo div{
 .notificacao.mostrar {
     display: flex;
     transform: translateY(0);
+}
+#listaAdicionais{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
 }
 
 
