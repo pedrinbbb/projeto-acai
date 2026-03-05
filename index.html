@@ -37,6 +37,8 @@
 
 </style>
 <body>
+    <div class="overlay-blur"></div>
+    
     <header class="header-container">
         <div class="menu-container">
             <div class="nome-acai">
@@ -171,225 +173,482 @@
 
                 </article>
         </section>
+
+        <section class="formulario-tel-nome" style="display: none;"> <!-- form telefone nome -->
+            <header class="header-formulario-infos">
+                <h2>Suas Informações</h2>
+            </header>
+            <form action="get" id="form-tel-nome">
+                <input
+                type="text"
+                name="nome"
+                id="input-nome" 
+                placeholder="Qual seu nome?"
+                required>
+
+                <input 
+                type="text"
+                id="input-telefone"
+                placeholder="(85) 12345-6789"
+                inputmode="numeric"
+                maxlength="15"
+                required>
+
+                <button type="submit" id="enviar">Enviar</button>
+            </form>
+        </section><!-- FIM -->
+
+        <section class="formulario-endereco" style="display: none;"><!-- form endereco -->
+            <header class="header-formulario-infos">
+                <h2>Suas Informações</h2>
+            </header>
+            <form action="get" id="form-tel-nome">
+                
+                <input
+                type="text"
+                id="endereco"
+                placeholder="Rua e número"
+                required
+                minlength="4">
+
+                <input
+                type="text"
+                id="bairro"
+                placeholder="Bairro"
+                required
+                minlength="3">
+                
+                <input
+                type="text"
+                id="complemento"
+                placeholder="Complemento (apto, bloco, etc)">
+                
+                <input
+                type="text"
+                id="referencia"
+                placeholder="Ponto de referência"
+                required>
+                <button type="submit" id="enviar">Enviar</button>
+            </form>
+        </section> <!-- FIM -->
+
+        <section class="formulario-pagamento" style="display: none;"> <!-- form pagamento -->
+            <header class="header-formulario-infos">
+                <h2>Pagamento</h2>
+            </header>
+            <div class="infos-pedido-pagamento">
+                <h2>Pedido <span class="total-pedido">R$ 0.00</span></h2>
+                <h2>Taxa de entrega <span class="taxa-entrega">R$ 0.00</span></h2>
+                <h2>Total a pagar <span class="total-pagar">R$ 0.00</span></h2>
+            </div>
+            <div class="forma-de-pagamento">
+                <h1>Qual a forma de pagamento?</h1>
+                <div class="pagar-na-entrega-pix">
+
+                    <button type="button" class="pagar-na-entrega">
+                        <i class="fa-solid fa-wallet"></i>
+                        <h2>Pagar na entrega</h2>
+                    </button>
+
+                    <button type="button" class="pix">
+                        <i class="fa-brands fa-pix"></i>
+                        <h2>Pagar no Pix</h2>                       
+                    </button>
+                </div>
+            </div>
+            
+        </section><!-- FIM -->
     </main>
-    
     <script>
-document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function () {
 
-    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+            let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 
-    // Seletores
-    const botoesAdicionar = document.querySelectorAll(".tamanho-valor button");
-    const iconeCarrinho = document.querySelector(".carrinho");
-    const valorCarrinhoTopo = document.querySelector(".carrinho .valor");
-    const containerCarrinho = document.querySelector(".cart-items-container");
-    const listaCarrinho = document.querySelector(".produtos-carrinho");
+            // Seletores
+            const botoesAdicionar = document.querySelectorAll(".tamanho-valor button");
+            const iconeCarrinho = document.querySelector(".carrinho");
+            const valorCarrinhoTopo = document.querySelector(".carrinho .valor");
+            const containerCarrinho = document.querySelector(".cart-items-container");
+            const listaCarrinho = document.querySelector(".produtos-carrinho");
 
-    // ===== BADGE =====
-    const badge = document.createElement("span");
-    badge.style.position = "absolute";
-    badge.style.top = "-8px";
-    badge.style.right = "-8px";
-    badge.style.background = "red";
-    badge.style.color = "white";
-    badge.style.padding = "2px 6px";
-    badge.style.borderRadius = "50%";
-    badge.style.fontSize = "12px";
-    badge.style.display = "none";
-    badge.style.fontWeight = "bold";
-    iconeCarrinho.style.position = "relative";
-    iconeCarrinho.appendChild(badge);
-
-    // ===== NOTIFICAÇÃO =====
-    function mostrarNotificacao(texto) {
-        const notif = document.createElement("div");
-        notif.innerText = texto;
-        notif.style.position = "fixed";
-        notif.style.bottom = "20px";
-        notif.style.right = "20px";
-        notif.style.background = "#FA8814";
-        notif.style.color = "#fff";
-        notif.style.padding = "12px 18px";
-        notif.style.borderRadius = "10px";
-        notif.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
-        notif.style.fontFamily = "fonte3";
-        notif.style.zIndex = "9999";
-        notif.style.opacity = "0";
-        notif.style.transition = "opacity .3s ease";
-
-        document.body.appendChild(notif);
-
-        setTimeout(() => notif.style.opacity = "1", 50);
-        setTimeout(() => {
-            notif.style.opacity = "0";
-            setTimeout(() => notif.remove(), 300);
-        }, 2000);
-    }
-
-    // ===== FUNÇÕES =====
-
-    function salvarCarrinho() {
-        localStorage.setItem("carrinho", JSON.stringify(carrinho));
-    }
-
-    function abrirCarrinho() {
-        containerCarrinho.style.display = "block";
-    }
-
-    function fecharCarrinho() {
-        containerCarrinho.style.display = "none";
-    }
-
-    // Abrir carrinho ao clicar
-    iconeCarrinho.addEventListener("click", abrirCarrinho);
-
-    window.abrirCarrinho = abrirCarrinho;
-    window.fecharCarrinho = fecharCarrinho;
-
-    function atualizarCarrinho() {
-        listaCarrinho.innerHTML = "";
-        let total = 0;
-        let quantidadeTotal = 0;
-
-        carrinho.forEach((item, index) => {
-            total += item.preco * item.quantidade;
-            quantidadeTotal += item.quantidade;
-
-            const div = document.createElement("div");
-            div.classList.add("linha-carrinho");
-            div.style.display = "flex";
-            div.style.gap = "10px";
-            div.style.alignItems = "center";
-            div.style.justifyContent = "space-between";
-            div.style.marginBottom = "15px";
-            div.style.background = "white";
-            div.style.padding = "12px";
-            div.style.borderRadius = "10px";
-
-            div.innerHTML = `
-                <p><strong>${item.nome}</strong></p>
-                <button onclick="diminuir(${index})">-</button>
-                <p>${item.quantidade}</p>
-                <button onclick="aumentar(${index})">+</button>
-                <p>R$ ${(item.preco * item.quantidade).toFixed(2)}</p>
-                <button onclick="remover(${index})" style="color:red;font-weight:bold">X</button>
-            `;
-
-            listaCarrinho.appendChild(div);
-        });
-
-        // Badge
-        if (quantidadeTotal > 0) {
-            badge.style.display = "block";
-            badge.innerText = quantidadeTotal;
-        } else {
+            // ===== BADGE =====
+            const badge = document.createElement("span");
+            badge.style.position = "absolute";
+            badge.style.top = "-8px";
+            badge.style.right = "-8px";
+            badge.style.background = "red";
+            badge.style.color = "white";
+            badge.style.padding = "2px 6px";
+            badge.style.borderRadius = "50%";
+            badge.style.fontSize = "12px";
             badge.style.display = "none";
-        }
+            badge.style.fontWeight = "bold";
+            iconeCarrinho.style.position = "relative";
+            iconeCarrinho.appendChild(badge);
 
-        // Valor topo do ícone
-        valorCarrinhoTopo.innerText = "R$ " + total.toFixed(2);
+            // ===== NOTIFICAÇÃO =====
+            function mostrarNotificacao(texto) {
+                const notif = document.createElement("div");
+                notif.innerText = texto;
+                notif.style.position = "fixed";
+                notif.style.bottom = "20px";
+                notif.style.right = "20px";
+                notif.style.background = "#FA8814";
+                notif.style.color = "#fff";
+                notif.style.padding = "12px 18px";
+                notif.style.borderRadius = "10px";
+                notif.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
+                notif.style.fontFamily = "fonte3";
+                notif.style.zIndex = "9999";
+                notif.style.opacity = "0";
+                notif.style.transition = "opacity .3s ease";
 
-        // ===== VALOR TOTAL NO CARRINHO =====
-        let totalDiv = document.querySelector(".total-carrinho");
-        if (totalDiv) totalDiv.remove();
+                document.body.appendChild(notif);
 
-        totalDiv = document.createElement("div");
-        totalDiv.classList.add("total-carrinho");
-
-        totalDiv.innerHTML = `Total: R$ ${total.toFixed(2)}`;
-
-        listaCarrinho.appendChild(totalDiv);
-
-        // Botão finalizar
-        let botaoFinalizar = document.querySelector(".btn-finalizar-pedido");
-        if (botaoFinalizar) botaoFinalizar.remove();
-
-        if (carrinho.length > 0) {
-            botaoFinalizar = document.createElement("button");
-            botaoFinalizar.classList.add("btn-finalizar-pedido");
-            botaoFinalizar.innerText = "Finalizar Pedido";
-            botaoFinalizar.style.marginTop = "15px";
-            botaoFinalizar.onclick = finalizarPedido;
-            listaCarrinho.appendChild(botaoFinalizar);
-        }
-
-        salvarCarrinho();
-    }
-
-    // ===== FUNÇÕES DE ATUALIZAÇÃO =====
-    window.aumentar = function (index) {
-        carrinho[index].quantidade++;
-        atualizarCarrinho();
-    };
-
-    window.diminuir = function (index) {
-        if (carrinho[index].quantidade > 1) {
-            carrinho[index].quantidade--;
-        } else {
-            carrinho.splice(index, 1);
-        }
-        atualizarCarrinho();
-    };
-
-    window.remover = function (index) {
-        carrinho.splice(index, 1);
-        atualizarCarrinho();
-    };
-
-    // ===== ADICIONAR PRODUTO =====
-    botoesAdicionar.forEach(botao => {
-        botao.addEventListener("click", () => {
-            const bloco = botao.closest(".tamanho-valor");
-            const produto = botao.closest(".produto");
-
-            const nome = produto.querySelector(".nome-produto").innerText;
-            const tamanho = bloco.querySelector(".tamanho").innerText;
-            const precoTexto = bloco.querySelector(".valor").innerText;
-            const preco = parseFloat(precoTexto.replace("R$", "").replace(",", "."));
-
-            const nomeCompleto = `${nome} - ${tamanho}`;
-
-            const existente = carrinho.find(item => item.nome === nomeCompleto);
-
-            if (existente) {
-                existente.quantidade++;
-            } else {
-                carrinho.push({
-                    nome: nomeCompleto,
-                    preco: preco,
-                    quantidade: 1
-                });
+                setTimeout(() => notif.style.opacity = "1", 50);
+                setTimeout(() => {
+                    notif.style.opacity = "0";
+                    setTimeout(() => notif.remove(), 300);
+                }, 2000);
             }
 
-            mostrarNotificacao(`${nomeCompleto} foi adicionado ao carrinho!`);
-            atualizarCarrinho();
-        });
-    });
+            // ===== FUNÇÕES =====
 
-    // ===== FINALIZAR WHATSAPP =====
-    function finalizarPedido() {
-        if (carrinho.length === 0) return;
+            function salvarCarrinho() {
+                localStorage.setItem("carrinho", JSON.stringify(carrinho));
+            }
 
-        const numero = "5585985677491";
+            function abrirCarrinho() {
+                containerCarrinho.style.display = "block";
+            }
 
-        let mensagem = `*Pedido - IÇAI ICEE*%0A%0A`;
-        let total = 0;
+            function fecharCarrinho() {
+                containerCarrinho.style.display = "none";
+            }
 
-        carrinho.forEach(item => {
-            mensagem += `• ${item.nome} x${item.quantidade} = R$ ${(item.preco * item.quantidade).toFixed(2)}%0A`;
-            total += item.preco * item.quantidade;
-        });
+            // Abrir carrinho ao clicar
+            iconeCarrinho.addEventListener("click", abrirCarrinho);
 
-        mensagem += `%0A*Total:* R$ ${total.toFixed(2)}`;
+            window.abrirCarrinho = abrirCarrinho;
+            window.fecharCarrinho = fecharCarrinho;
 
-        window.open(`https://wa.me/${numero}?text=${mensagem}`, "_blank");
+            function atualizarCarrinho() {
+                listaCarrinho.innerHTML = "";
+                let total = 0;
+                let quantidadeTotal = 0;
 
-        carrinho = [];
-        atualizarCarrinho();
-    }
+                carrinho.forEach((item, index) => {
+                    total += item.preco * item.quantidade;
+                    quantidadeTotal += item.quantidade;
 
-    atualizarCarrinho();
+                    const div = document.createElement("div");
+                    div.classList.add("linha-carrinho");
+                    div.style.display = "flex";
+                    div.style.gap = "10px";
+                    div.style.alignItems = "center";
+                    div.style.justifyContent = "space-between";
+                    div.style.marginBottom = "15px";
+                    div.style.background = "white";
+                    div.style.padding = "12px";
+                    div.style.borderRadius = "10px";
+
+                    div.innerHTML = `
+                        <p><strong>${item.nome}</strong></p>
+                        <button onclick="diminuir(${index})">-</button>
+                        <p>${item.quantidade}</p>
+                        <button onclick="aumentar(${index})">+</button>
+                        <p>R$ ${(item.preco * item.quantidade).toFixed(2)}</p>
+                        <button onclick="remover(${index})" style="color:red;font-weight:bold">X</button>
+                    `;
+
+                    listaCarrinho.appendChild(div);
+                });
+
+                // Badge
+                if (quantidadeTotal > 0) {
+                    badge.style.display = "block";
+                    badge.innerText = quantidadeTotal;
+                } else {
+                    badge.style.display = "none";
+                }
+
+                // Valor topo do ícone
+                valorCarrinhoTopo.innerText = "R$ " + total.toFixed(2);
+
+                // ===== VALOR TOTAL NO CARRINHO =====
+                let totalDiv = document.querySelector(".total-carrinho");
+                if (totalDiv) totalDiv.remove();
+
+                totalDiv = document.createElement("div");
+                totalDiv.classList.add("total-carrinho");
+
+                totalDiv.innerHTML = `Total: R$ ${total.toFixed(2)}`;
+
+                listaCarrinho.appendChild(totalDiv);
+
+                // Botão finalizar
+                let botaoFinalizar = document.querySelector(".btn-finalizar-pedido");
+                if (botaoFinalizar) botaoFinalizar.remove();
+
+                if (carrinho.length > 0) {
+                    botaoFinalizar = document.createElement("button");
+                    botaoFinalizar.classList.add("btn-finalizar-pedido");
+                    botaoFinalizar.innerText = "Finalizar Pedido";
+                    botaoFinalizar.style.marginTop = "15px";
+                    botaoFinalizar.onclick = finalizarPedido;
+                    listaCarrinho.appendChild(botaoFinalizar);
+                }
+
+                salvarCarrinho();
+            }
+
+            // ===== FUNÇÕES DE ATUALIZAÇÃO =====
+            window.aumentar = function (index) {
+                carrinho[index].quantidade++;
+                atualizarCarrinho();
+            };
+
+            window.diminuir = function (index) {
+                if (carrinho[index].quantidade > 1) {
+                    carrinho[index].quantidade--;
+                } else {
+                    carrinho.splice(index, 1);
+                }
+                atualizarCarrinho();
+            };
+
+            window.remover = function (index) {
+                carrinho.splice(index, 1);
+                atualizarCarrinho();
+            };
+
+            // ===== ADICIONAR PRODUTO =====
+            botoesAdicionar.forEach(botao => {
+                botao.addEventListener("click", () => {
+                    const bloco = botao.closest(".tamanho-valor");
+                    const produto = botao.closest(".produto");
+
+                    const nome = produto.querySelector(".nome-produto").innerText;
+                    const tamanho = bloco.querySelector(".tamanho").innerText;
+                    const precoTexto = bloco.querySelector(".valor").innerText;
+                    const preco = parseFloat(precoTexto.replace("R$", "").replace(",", "."));
+
+                    const nomeCompleto = `${nome} - ${tamanho}`;
+
+                    const existente = carrinho.find(item => item.nome === nomeCompleto);
+
+                    if (existente) {
+                        existente.quantidade++;
+                    } else {
+                        carrinho.push({
+                            nome: nomeCompleto,
+                            preco: preco,
+                            quantidade: 1
+                        });
+                    }
+
+                    mostrarNotificacao(`${nomeCompleto} foi adicionado ao carrinho!`);
+                    atualizarCarrinho();
+                });
+            });
+
+            // ================================
+// SISTEMA DE FINALIZAÇÃO DE PEDIDO
+// ================================
+
+const taxaEntrega = 2;
+const numeroWhatsapp = "5585985677491";
+
+let dadosCliente = {};
+let formaPagamento = "";
+
+// overlay blur
+const overlay = document.createElement("div");
+overlay.className = "overlay-blur";
+document.body.appendChild(overlay);
+
+// sections
+const secNomeTel = document.querySelector(".formulario-tel-nome");
+const secEndereco = document.querySelector(".formulario-endereco");
+const secPagamento = document.querySelector(".formulario-pagamento");
+
+const formNomeTel = secNomeTel.querySelector("form");
+const formEndereco = secEndereco.querySelector("form");
+
+// spans pagamento
+const totalPedidoSpan = document.querySelector(".total-pedido");
+const taxaEntregaSpan = document.querySelector(".taxa-entrega");
+const totalPagarSpan = document.querySelector(".total-pagar");
+
+// ================================
+// ABRIR PRIMEIRO FORM
+// ================================
+
+function finalizarPedido(){
+
+if(carrinho.length === 0){
+alert("Seu carrinho está vazio");
+return;
+}
+
+containerCarrinho.style.display="none";
+
+overlay.style.display="block";
+secNomeTel.style.display="block";
+
+}
+
+// ================================
+// MASCARA TELEFONE
+// ================================
+
+const telefoneInput = document.getElementById("input-telefone");
+
+telefoneInput.addEventListener("input",function(){
+
+let v = telefoneInput.value.replace(/\D/g,"");
+
+if(v.length>11) v=v.slice(0,11);
+
+if(v.length>6){
+telefoneInput.value=`(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+}
+else if(v.length>2){
+telefoneInput.value=`(${v.slice(0,2)}) ${v.slice(2)}`;
+}
+else{
+telefoneInput.value=v;
+}
+
 });
+
+// ================================
+// FORM NOME TELEFONE
+// ================================
+
+formNomeTel.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+dadosCliente.nome = document.getElementById("input-nome").value;
+dadosCliente.telefone = telefoneInput.value;
+
+secNomeTel.style.display="none";
+secEndereco.style.display="block";
+
+});
+
+// ================================
+// FORM ENDEREÇO
+// ================================
+
+formEndereco.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+dadosCliente.endereco = document.getElementById("endereco").value;
+dadosCliente.bairro = document.getElementById("bairro").value;
+dadosCliente.complemento = document.getElementById("complemento").value;
+dadosCliente.referencia = document.getElementById("referencia").value;
+
+secEndereco.style.display="none";
+secPagamento.style.display="block";
+
+calcularValores();
+
+});
+
+// ================================
+// CALCULAR VALORES
+// ================================
+
+function calcularValores(){
+
+let subtotal=0;
+
+carrinho.forEach(item=>{
+subtotal += item.preco * item.quantidade;
+});
+
+const total = subtotal + taxaEntrega;
+
+totalPedidoSpan.innerText=`R$ ${subtotal.toFixed(2)}`;
+taxaEntregaSpan.innerText=`R$ ${taxaEntrega.toFixed(2)}`;
+totalPagarSpan.innerText=`R$ ${total.toFixed(2)}`;
+
+}
+
+// ================================
+// ESCOLHER PAGAMENTO
+// ================================
+
+const btnPix = document.querySelector(".pix");
+const btnEntrega = document.querySelector(".pagar-na-entrega");
+
+btnPix.onclick = ()=> escolherPagamento("Pix");
+btnEntrega.onclick = ()=> escolherPagamento("Pagar na entrega");
+
+function escolherPagamento(tipo){
+
+formaPagamento = tipo;
+
+let btnFinal = document.querySelector(".btn-enviar-whatsapp");
+
+if(!btnFinal){
+
+btnFinal=document.createElement("button");
+btnFinal.innerText="Finalizar Pedido";
+btnFinal.className="btn-enviar-whatsapp";
+btnFinal.style.marginTop="20px";
+btnFinal.onclick=enviarWhatsapp;
+
+secPagamento.appendChild(btnFinal);
+
+}
+
+}
+
+// ================================
+// ENVIAR WHATSAPP
+// ================================
+
+function enviarWhatsapp(){
+
+let subtotal=0;
+
+let mensagem=`*NOVO PEDIDO - IÇAI ICEE*%0A%0A`;
+
+mensagem+=`*Cliente:* ${dadosCliente.nome}%0A`;
+mensagem+=`*Telefone:* ${dadosCliente.telefone}%0A%0A`;
+
+mensagem+=`*Endereço*%0A`;
+mensagem+=`${dadosCliente.endereco}%0A`;
+mensagem+=`Bairro: ${dadosCliente.bairro}%0A`;
+mensagem+=`Complemento: ${dadosCliente.complemento}%0A`;
+mensagem+=`Referência: ${dadosCliente.referencia}%0A%0A`;
+
+mensagem+=`*Pedido*%0A`;
+
+carrinho.forEach(item=>{
+const valor=item.preco*item.quantidade;
+subtotal+=valor;
+
+mensagem+=`• ${item.nome} x${item.quantidade} = R$ ${valor.toFixed(2)}%0A`;
+});
+
+const total=subtotal+taxaEntrega;
+
+mensagem+=`%0A*Subtotal:* R$ ${subtotal.toFixed(2)}`;
+mensagem+=`%0A*Entrega:* R$ ${taxaEntrega.toFixed(2)}`;
+mensagem+=`%0A*Total:* R$ ${total.toFixed(2)}`;
+mensagem+=`%0A%0A*Pagamento:* ${formaPagamento}`;
+
+window.open(`https://wa.me/${numeroWhatsapp}?text=${mensagem}`,"_blank");
+
+overlay.style.display="none";
+
+}
+        });
 </script>
 </body>
 </html>

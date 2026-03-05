@@ -2,12 +2,166 @@
     margin: 0;
     padding: 0;
 }
+/* OVERLAY BORRADO */
+
+.overlay-blur{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    backdrop-filter: blur(6px);
+    background: rgba(0,0,0,0.3);
+    z-index: 900;
+    display:none;
+}
+
+/* FORMULARIOS NA FRENTE */
+
+.formulario-tel-nome,
+.formulario-endereco,
+.formulario-pagamento{
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    z-index:1000;
+}
+
 html{
     scroll-behavior: smooth;
 }
+
+/* Formulario telefone nome */
+section.formulario-tel-nome, section.formulario-endereco, section.formulario-pagamento{
+    position: fixed;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    width: 50%;
+}
+header.header-formulario-infos{
+    background-color: #fa942d;
+    color: white;
+    font-family: fonte3;
+    padding: 12px;
+    border-radius: 12px 12px 0px 0px ;
+
+}
+form#form-tel-nome{
+    background-color: #fa942d;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 25px 16px;
+    align-items: center;
+}
+#input-nome, #input-telefone, #endereco, #complemento, #referencia, #bairro{
+    padding: 12px;
+    border: 0px;
+    border-radius: 12px;
+    font-family: fonte3;
+    outline: 0;
+    max-width: 100%;
+}
+#input-nome:focus, #input-telefone:focus{
+    outline-style: dashed;
+    outline: 1px solid rgb(138, 136, 136);
+    transition: 0.5s;
+}
+button#enviar{
+    margin-top: 18px;
+    padding: 12px;
+    border: 0;
+    border-radius: 12px;
+    font-family: fonte3;
+    width: 120px;
+    cursor: pointer;
+    color: black;
+    background-color: white;
+}
+section.formulario-pagamento{
+    background-color: #fa942d;
+    border-radius: 12px 12px 0px 0px;
+    padding: 8px;
+}
+div.infos-pedido-pagamento{
+    font-family: fonte4;
+    color: rgb(78, 78, 78);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.459) ;
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(.9em, 1vw, 1.2em);
+    text-align: center;
+    gap: 18px;
+    background-color: #ffffff;
+    box-shadow: 0px 1px 5px black;
+    border-radius: 12px;
+    padding: 16px 0px;
+}
+div.forma-de-pagamento{
+    margin-top: 20px;
+    font-family: fonte4;
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.459) ;
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(.9em, 1vw, 1.2em);
+    text-align: center;
+    gap: 25px;
+}
+
+div.forma-de-pagamento h1{
+    font-size: clamp(1.2em, 3vw, 1.6em);
+}
+div.pagar-na-entrega-pix{
+    display: flex;
+    justify-content: space-around;
+    gap: 12px;
+    align-items: flex-start;
+}
+div.pagar-na-entrega-pix button.pix, button.pagar-na-entrega{
+    border: 0;
+    border-radius: 6px;
+    padding: 12px;
+    width: 50%;
+    font-family: fonte3;
+    cursor: pointer;
+    transition: 0.2s;
+}
+button.pix:focus, button.pagar-na-entrega:focus{
+    background-color: red;
+    color: white;
+
+}
+button.pix i, button.pagar-na-entrega i{
+    font-size: 26px;
+    padding-bottom: 12px;
+}
+button.pix i{
+    color: #00BDAE;
+}
+.btn-enviar-whatsapp{
+    margin: auto;
+    padding: 12px;
+    border: 0;
+    border-radius: 12px;
+    font-family: fonte3;
+    cursor: pointer;
+    color: black;
+    background-color: white;
+    text-align: center;
+}
+
+
+
+
+
+
+
 .header-container{
     background-image: linear-gradient(to right,#FAA401, #FA8814);
-    height: 420px;
+    height: clamp(410px, 80vh, 450px);
 }
 .menu-container{
     display: flex;
@@ -31,7 +185,6 @@ html{
     cursor: pointer;
     background-color: #fa942d;
 
-    
     .valor{
         margin: 0;
     }
