@@ -1,184 +1,395 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto acai</title>
-    <link rel="stylesheet" href="style.css" media="all">
-    <link rel="stylesheet" href="media-query.css">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <style>
-        @font-face {
-            font-family: fonte1;
-            src: url(fonte/static/Montserrat-ExtraBold.ttf) format("truetype");
-        }
-        @font-face {
-            font-family: fonte2;
-            src: url(fonte/Montserrat-VariableFont_wght.ttf);
-        }
-    </style>
+    <title>Icai icee</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">   
 </head>
+<style>
+    @font-face {
+        font-family: fonte1;
+        src: url(fonte/static/Montserrat-ExtraBold.ttf) ;
+    }
+    @font-face {
+        font-family: fonte2;
+        src: url(fonte/static/Montserrat-Bold.ttf) ;
+    }
+    @font-face {
+        font-family: fonte3;
+        src: url(fonte/static/Montserrat-SemiBold.ttf) ;
+    }
+    @font-face {
+        font-family: fonte4;
+        src: url(fonte/static/Montserrat-Light.ttf) ;
+    }
+    @font-face {
+        font-family: fonte5;
+        src: url(fonte/static/Montserrat-Medium.ttf) ;
+    }
+    @font-face {
+        font-family: fonte6;
+        src: url(fonte/static/Montserrat-Regular.ttf) ;
+    }
+
+</style>
 <body>
-    <section class="banner-fundo">
-        <header class="header-container">
-            <div class="logo">
-                <h1><a href="index.html"><span class="icee">ICEE</span> AÇAÍ</a></h1>
+    <header class="header-container">
+        <div class="menu-container">
+            <div class="nome-acai">
+                <h1><span class="icai">IÇAI</span> <span class="icee">ICEE</span></h1>
             </div>
-            <div class="carrinho" id="btnCarrinho">
-                <span class="material-symbols-outlined">shopping_bag</span>
-            </div>
-        </header>
-        <div class="main-tittle">
-            <h1>ICEE <br> <span class="acai">AÇAÍ</span></h1>
-            <p>Açaí cremoso, geladinho e cheio de sabor, textura perfeita e aquele gosto que vicia. Ideal pra refrescar o dia e recarregar as energias!</p>
-        </div>
-        <div class="botao">
-            <div class="ver-cardapio">
-                <h3>Ver Cardápio</h3>
-            </div>
-            <div>
-                <span class="material-symbols-outlined" id="seta">arrow_downward</span>
+            <div class="carrinho">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <p class="valor">R$ 0.00</p>
             </div>
         </div>
-    </section>
-    <main class="conteudo">
-        <div class="text-main">
+        <h2><span class="icai">IÇAI</span> <br> <span class="icee">ICEE</span></h2>
+        <p>Açaí cremoso, geladinho e cheio de sabor, textura perfeita e aquele gosto que vicia. Ideal pra refrescar o dia e recarregar as energias!</p>
+        <button class="ver-cardapio-container">
+            <div class="ver-cardapio-text">
+                <a href="#nossos-produtos">Ver Cardápio</a>
+            </div>
+            <div class="ver-cardapio-icon">
+                <i class="fa-solid fa-arrow-down"></i>
+            </div>
+        </button>
+
+        <div class="cart-items-container" style="display: none;">
+            <header class="header-cart-items">
+                <div class="text-cart-items">
+                    <h1>Seu Carrinho</h1>
+                </div>
+                <div class="icon-cart-items">
+                    <i class="fa-solid fa-x" onclick="fecharCarrinho()"></i>
+                </div>
+            </header>
+            <section class="produtos-carrinho">
+                
+            </section>
+        </div>
+    </header>
+    
+    <main id="main">
+        <div class="nossos-produtos" id="nossos-produtos">
             <h3>NOSSO CARDAPIO</h3>
-            <h1>Escolha seu <span class="acai-main">Açaí</span></h1>
+            <h1>Escolha seu <span class="acai">Açaí</span></h1>
             <p>Açaí cremoso, geladinho e cheio de sabor, textura perfeita e aquele gosto que vicia. Ideal pra refrescar o dia e recarregar as energias!</p>
         </div>
-        <section class="produtos">
-            <aside class="acai-produto">
-                <img src="img/acaiproduto.png">
-            <div class="text-produto">
-                    <h2>Garrafa de Açaí</h2>
-                    <p>Açaí cremoso, geladinho e cheio de sabor</p>
-                <div class="btn-comprar">
-                    <div class="btn-comprar-container">        
-                        <div class="preco-carrinho">
-                            <div class="preco">
-                                <h2>Apartir de R$12,00</h2>
-                            </div>
-                            <div class="adicionar-carrinho">
-                                <span class="material-symbols-outlined">shopping_bag</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </aside>
+        
+        <section class="produtos-container"> 
+                <article class="produto">
+                    <img src="img-acai/acaiproduto.png">
+                    <h2 class="nome-produto">Tradicional</h2>
+                    <h4 class="descricao-produto">Açaí cremoso, geladinho e cheio de sabor</h4>
 
-            <aside class="acai-produto">
-                <img src="img/acaimaracuja.png">
-            <div class="text-produto">
-                    <h2>Açaí com Maracujá</h2>
-                    <p>Açaí cremoso, geladinho e cheio de sabor</p>
-                <div class="btn-comprar">
-                    <div class="btn-comprar-container">        
-                        <div class="preco-carrinho">
-                            <div class="preco">
-                                <h2>Apartir de R$14,00</h2>
-                            </div>
-                            <div class="adicionar-carrinho">
-                                <span class="material-symbols-outlined">shopping_bag</span>
-                            </div>
-                        </div>
+                    <div class="tamanho-valor">
+                        <h3 class="tamanho">300ml</h3>
+                        <h3 class="valor">R$ 15,00</h3>
+                        <button><i class="fa-solid fa-cart-shopping"></i></button>
                     </div>
-                </div>
-            </div>
-            </aside>
+                    <div class="tamanho-valor">
+                        <h3 class="tamanho">500ml</h3>
+                        <h3 class="valor">R$ 18,00</h3>
+                        <button><i class="fa-solid fa-cart-shopping"></i></button>
+                    </div>
 
-            <aside class="acai-produto">
-                <img src="img/acaimaracuja.png">
-            <div class="text-produto">
-                    <h2>Açaí com Limão</h2>
-                    <p>Açaí cremoso, geladinho e cheio de sabor</p>
-                <div class="btn-comprar">
-                    <div class="btn-comprar-container">        
-                        <div class="preco-carrinho">
-                            <div class="preco">
-                                <h2>Apartir de R$14,00</h2>
-                            </div>
-                            <div class="adicionar-carrinho">
-                                <span class="material-symbols-outlined">shopping_bag</span>
-                            </div>
-                        </div>
+                </article>
+
+                <article class="produto">
+                    <img src="img-acai/acaimaracuja.png">
+                    <h2 class="nome-produto">Maracuja</h2>
+                    <h4 class="descricao-produto">Açaí cremoso, geladinho e cheio de sabor</h4>
+
+                    <div class="tamanho-valor">
+                        <h3 class="tamanho">300ml</h3>
+                        <h3 class="valor">R$ 18,00</h3>
+                        <button><i class="fa-solid fa-cart-shopping"></i></button>
                     </div>
-                </div>
-            </div>
-            </aside>
-            <div id="notificacaoCarrinho" class="notificacao">Produto adicionado ao carrinho 🛒</div>
+                    <div class="tamanho-valor">
+                        <h3 class="tamanho">500ml</h3>
+                        <h3 class="valor">R$ 21,00</h3>
+                        <button><i class="fa-solid fa-cart-shopping"></i></button>
+                    </div>
+
+                </article>
+
+                <article class="produto">
+                    <img src="img-acai/acai-napolitano.png">
+                    <h2 class="nome-produto">Napolitano</h2>
+                    <h4 class="descricao-produto">Trufado de morango e maracuja</h4>
+                    
+                    <div class="tamanho-valor">
+                        <h3 class="tamanho">300ml</h3>
+                        <h3 class="valor">R$ 18,00</h3>
+                        <button><i class="fa-solid fa-cart-shopping"></i></button>
+                    </div>
+                    <div class="tamanho-valor">
+                        <h3 class="tamanho">500ml</h3>
+                        <h3 class="valor">R$ 21,00</h3>
+                        <button><i class="fa-solid fa-cart-shopping"></i></button>
+                    </div>
+
+                </article>
+
+                <article class="produto">
+                    <img src="img-acai/acai-paçoca.png">
+                    <h2 class="nome-produto">Paçoca</h2>
+                    <h4 class="descricao-produto">Açaí cremoso, geladinho e cheio de sabor</h4>
+                    
+                    <div class="tamanho-valor">
+                        <h3 class="tamanho">300ml</h3>
+                        <h3 class="valor">R$ 18,00</h3>
+                        <button><i class="fa-solid fa-cart-shopping"></i></button>
+                    </div>
+                    <div class="tamanho-valor">
+                        <h3 class="tamanho">500ml</h3>
+                        <h3 class="valor">R$ 21,00</h3>
+                        <button><i class="fa-solid fa-cart-shopping"></i></button>
+                    </div>
+
+                </article>
+
+                <article class="produto">
+                    <img src="img-acai/acai-morango.png">
+                    <h2 class="nome-produto">Morango</h2>
+                    <h4 class="descricao-produto">Açaí cremoso, geladinho e cheio de sabor</h4>
+                    
+                    <div class="tamanho-valor">
+                        <h3 class="tamanho">300ml</h3>
+                        <h3 class="valor">R$ 18,00</h3>
+                        <button><i class="fa-solid fa-cart-shopping"></i></button>
+                    </div>
+                    <div class="tamanho-valor">
+                        <h3 class="tamanho">500ml</h3>
+                        <h3 class="valor">R$ 21,00</h3>
+                        <button><i class="fa-solid fa-cart-shopping"></i></button>
+                    </div>
+
+                </article>
         </section>
     </main>
+    
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
 
-    <div class="carrinho-modal" id="carrinhoModal">
-    <div class="carrinho-conteudo">
-        <h2>🛒 Seu carrinho</h2>
-        <ul id="listaCarrinho"></ul>
-        <div class="resumo">
-        <p>Subtotal: <span id="subtotal">R$ 0,00</span></p>
-        <p>Taxa de entrega: <span id="taxa">R$ 2,00</span></p>
-        <p class="total">Total: <span id="total">R$ 0,00</span></p>
-        </div>
-        <button id="finalizarPedido">Finalizar Pedido</button>
-        <button id="voltarCardapio">Fechar</button>
-    </div>
-    </div>
+    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 
-<!-- Modal tamanho do produto -->
-    <div class="modal" id="modalTamanho">
-    <div class="modal-content">
-        <h2>Escolha o tamanho</h2>
-        <button class="btn-tamanho" data-tamanho="300ml">300ml </button>
-        <button class="btn-tamanho" data-tamanho="500ml">500ml </button>
-        <button class="fechar">Cancelar</button>
-    </div>
-    </div>
+    // Seletores
+    const botoesAdicionar = document.querySelectorAll(".tamanho-valor button");
+    const iconeCarrinho = document.querySelector(".carrinho");
+    const valorCarrinhoTopo = document.querySelector(".carrinho .valor");
+    const containerCarrinho = document.querySelector(".cart-items-container");
+    const listaCarrinho = document.querySelector(".produtos-carrinho");
 
-<!-- Modal formulário cliente -->
-    <div id="modalFormCliente" class="modal-cliente">
-    <div class="modal-cliente-conteudo">
-        <h2>Informações do Cliente</h2>
-        <form id="formularioCliente">
-        <label>Nome:</label>
-        <input type="text" id="nomeCliente" placeholder="seu nome:" required>
+    // ===== BADGE =====
+    const badge = document.createElement("span");
+    badge.style.position = "absolute";
+    badge.style.top = "-8px";
+    badge.style.right = "-8px";
+    badge.style.background = "red";
+    badge.style.color = "white";
+    badge.style.padding = "2px 6px";
+    badge.style.borderRadius = "50%";
+    badge.style.fontSize = "12px";
+    badge.style.display = "none";
+    badge.style.fontWeight = "bold";
+    iconeCarrinho.style.position = "relative";
+    iconeCarrinho.appendChild(badge);
 
-        <label>Telefone:</label>
-        <input type="text" id="telefoneCliente" placeholder="85 985677491" required>
+    // ===== NOTIFICAÇÃO =====
+    function mostrarNotificacao(texto) {
+        const notif = document.createElement("div");
+        notif.innerText = texto;
+        notif.style.position = "fixed";
+        notif.style.bottom = "20px";
+        notif.style.right = "20px";
+        notif.style.background = "#FA8814";
+        notif.style.color = "#fff";
+        notif.style.padding = "12px 18px";
+        notif.style.borderRadius = "10px";
+        notif.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
+        notif.style.fontFamily = "fonte3";
+        notif.style.zIndex = "9999";
+        notif.style.opacity = "0";
+        notif.style.transition = "opacity .3s ease";
 
-        <label>Endereço:</label>
-        <input type="text" id="enderecoCliente" placeholder="Rua..." required>
+        document.body.appendChild(notif);
 
-        <label>Ponto de referência:</label>
-        <input type="text" id="referenciaCliente" placeholder="em frente..." required>
+        setTimeout(() => notif.style.opacity = "1", 50);
+        setTimeout(() => {
+            notif.style.opacity = "0";
+            setTimeout(() => notif.remove(), 300);
+        }, 2000);
+    }
 
-        <label>Bairro:</label>
-        <input type="text" id="bairroCliente" required>
+    // ===== FUNÇÕES =====
 
+    function salvarCarrinho() {
+        localStorage.setItem("carrinho", JSON.stringify(carrinho));
+    }
 
-        <button type="submit">Enviar Pedido</button>
-        </form>
-        <button id="fecharFormCliente" class="fechar-cliente">Cancelar</button>
-    </div>
-    </div>
-    <!-- Modal de adicionais -->
-<div class="modal" id="modalAdicionais">
-  <div class="modal-content">
-    <h2>Escolha os adicionais</h2>
+    function abrirCarrinho() {
+        containerCarrinho.style.display = "block";
+    }
 
-    <div id="listaAdicionais"></div>
+    function fecharCarrinho() {
+        containerCarrinho.style.display = "none";
+    }
 
-    <button id="confirmarAdicionais">Adicionar ao carrinho</button>
-    <button class="fechar">Cancelar</button>
-  </div>
-</div>
+    // Abrir carrinho ao clicar
+    iconeCarrinho.addEventListener("click", abrirCarrinho);
 
+    window.abrirCarrinho = abrirCarrinho;
+    window.fecharCarrinho = fecharCarrinho;
 
+    function atualizarCarrinho() {
+        listaCarrinho.innerHTML = "";
+        let total = 0;
+        let quantidadeTotal = 0;
 
+        carrinho.forEach((item, index) => {
+            total += item.preco * item.quantidade;
+            quantidadeTotal += item.quantidade;
 
-    <script src="script.js"></script>
+            const div = document.createElement("div");
+            div.classList.add("linha-carrinho");
+            div.style.display = "flex";
+            div.style.gap = "10px";
+            div.style.alignItems = "center";
+            div.style.justifyContent = "space-between";
+            div.style.marginBottom = "15px";
+            div.style.background = "white";
+            div.style.padding = "12px";
+            div.style.borderRadius = "10px";
+
+            div.innerHTML = `
+                <p><strong>${item.nome}</strong></p>
+                <button onclick="diminuir(${index})">-</button>
+                <p>${item.quantidade}</p>
+                <button onclick="aumentar(${index})">+</button>
+                <p>R$ ${(item.preco * item.quantidade).toFixed(2)}</p>
+                <button onclick="remover(${index})" style="color:red;font-weight:bold">X</button>
+            `;
+
+            listaCarrinho.appendChild(div);
+        });
+
+        // Badge
+        if (quantidadeTotal > 0) {
+            badge.style.display = "block";
+            badge.innerText = quantidadeTotal;
+        } else {
+            badge.style.display = "none";
+        }
+
+        // Valor topo do ícone
+        valorCarrinhoTopo.innerText = "R$ " + total.toFixed(2);
+
+        // ===== VALOR TOTAL NO CARRINHO =====
+        let totalDiv = document.querySelector(".total-carrinho");
+        if (totalDiv) totalDiv.remove();
+
+        totalDiv = document.createElement("div");
+        totalDiv.classList.add("total-carrinho");
+
+        totalDiv.innerHTML = `Total: R$ ${total.toFixed(2)}`;
+
+        listaCarrinho.appendChild(totalDiv);
+
+        // Botão finalizar
+        let botaoFinalizar = document.querySelector(".btn-finalizar-pedido");
+        if (botaoFinalizar) botaoFinalizar.remove();
+
+        if (carrinho.length > 0) {
+            botaoFinalizar = document.createElement("button");
+            botaoFinalizar.classList.add("btn-finalizar-pedido");
+            botaoFinalizar.innerText = "Finalizar Pedido";
+            botaoFinalizar.style.marginTop = "15px";
+            botaoFinalizar.onclick = finalizarPedido;
+            listaCarrinho.appendChild(botaoFinalizar);
+        }
+
+        salvarCarrinho();
+    }
+
+    // ===== FUNÇÕES DE ATUALIZAÇÃO =====
+    window.aumentar = function (index) {
+        carrinho[index].quantidade++;
+        atualizarCarrinho();
+    };
+
+    window.diminuir = function (index) {
+        if (carrinho[index].quantidade > 1) {
+            carrinho[index].quantidade--;
+        } else {
+            carrinho.splice(index, 1);
+        }
+        atualizarCarrinho();
+    };
+
+    window.remover = function (index) {
+        carrinho.splice(index, 1);
+        atualizarCarrinho();
+    };
+
+    // ===== ADICIONAR PRODUTO =====
+    botoesAdicionar.forEach(botao => {
+        botao.addEventListener("click", () => {
+            const bloco = botao.closest(".tamanho-valor");
+            const produto = botao.closest(".produto");
+
+            const nome = produto.querySelector(".nome-produto").innerText;
+            const tamanho = bloco.querySelector(".tamanho").innerText;
+            const precoTexto = bloco.querySelector(".valor").innerText;
+            const preco = parseFloat(precoTexto.replace("R$", "").replace(",", "."));
+
+            const nomeCompleto = `${nome} - ${tamanho}`;
+
+            const existente = carrinho.find(item => item.nome === nomeCompleto);
+
+            if (existente) {
+                existente.quantidade++;
+            } else {
+                carrinho.push({
+                    nome: nomeCompleto,
+                    preco: preco,
+                    quantidade: 1
+                });
+            }
+
+            mostrarNotificacao(`${nomeCompleto} foi adicionado ao carrinho!`);
+            atualizarCarrinho();
+        });
+    });
+
+    // ===== FINALIZAR WHATSAPP =====
+    function finalizarPedido() {
+        if (carrinho.length === 0) return;
+
+        const numero = "5585985677491";
+
+        let mensagem = `*Pedido - IÇAI ICEE*%0A%0A`;
+        let total = 0;
+
+        carrinho.forEach(item => {
+            mensagem += `• ${item.nome} x${item.quantidade} = R$ ${(item.preco * item.quantidade).toFixed(2)}%0A`;
+            total += item.preco * item.quantidade;
+        });
+
+        mensagem += `%0A*Total:* R$ ${total.toFixed(2)}`;
+
+        window.open(`https://wa.me/${numero}?text=${mensagem}`, "_blank");
+
+        carrinho = [];
+        atualizarCarrinho();
+    }
+
+    atualizarCarrinho();
+});
+</script>
 </body>
 </html>
