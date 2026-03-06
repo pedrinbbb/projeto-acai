@@ -27,7 +27,6 @@
     transform:translate(-50%,-50%);
     z-index:1000;
 }
-
 html{
     scroll-behavior: smooth;
 }
@@ -40,6 +39,21 @@ section.formulario-tel-nome, section.formulario-endereco, section.formulario-pag
     transform: translate(-50%, -100%);
     width: 50%;
 }
+@media (max-width: 600px){
+    section.formulario-tel-nome, section.formulario-endereco, section.formulario-pagamento{
+        position: fixed;
+        top: 100%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        background-color: #fa942d;
+    }
+    div.pagar-na-entrega-pix button.pix, button.pagar-na-entrega{
+        
+    }
+    
+}
+
 header.header-formulario-infos{
     background-color: #fa942d;
     color: white;
@@ -87,15 +101,15 @@ section.formulario-pagamento{
 }
 div.infos-pedido-pagamento{
     font-family: fonte4;
-    color: rgb(78, 78, 78);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.459) ;
+    color: rgb(0, 0, 0);
+    text-shadow: 1px 1px 1px #fa932d52 ;
     display: flex;
     flex-direction: column;
-    font-size: clamp(.9em, 1vw, 1.2em);
+    font-size: clamp(.7em, 2vw, 1.2em);
     text-align: center;
     gap: 18px;
     background-color: #ffffff;
-    box-shadow: 0px 1px 5px black;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.452);
     border-radius: 12px;
     padding: 16px 0px;
 }
@@ -258,6 +272,11 @@ section.produtos-carrinho{
     background-color: white;
     width: 450px;
     height: 100%;
+}
+@media (max-width: 453px){
+    .cart-items-container{
+        width: 100%;
+    }
 }
 @media (max-width: 453px){
     .cart-items-container{
